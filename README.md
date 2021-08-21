@@ -9,7 +9,7 @@ Udacity Bikeshare Project
 ### Description
 This project looks at US bikeshare data for the cities of Chicago, Washington and New York. 
 
-When run, the script will prompt users to select a city to view and ask for various filters to be applied. The user can also select to view raw data.
+When running the script, users will be prompted to select a city to view and ask for various filters to be applied. The user can also select to view raw data.
 
 ### Files used
 The data used in this file were :
