@@ -12,10 +12,12 @@ This project looks at US bikeshare data for the cities of Chicago, Washington an
 When run, the script will prompt users to select a city to view and ask for various filters to be applied. The user can also select to view raw data.
 
 ### Files used
-The data used in the file include :
+The data used in this file were :
 chicago.csv
 new_york_city.csv
 washington.csv
+
+These files have not been pushed due to their size. However, please contact me if you would like to view. 
 
 ### Credits
 Massive thanks goes to all the Udacity instructors who helped with my queries. You guys are legends !
