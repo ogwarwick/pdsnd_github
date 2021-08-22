@@ -1,9 +1,9 @@
 import time
 import pandas as pd
 import numpy as np
-CITY_DATA = { 'chicago': 'chicago.csv',
+CITY_DATA = {'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+              'washington': 'washington.csv'}
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -14,7 +14,7 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 #Use of an empty city variable to store city choice from user
-    
+
     city = ''
     # while loop for correct user input gets otherwise repeat
     while city not in CITY_DATA.keys():
@@ -28,16 +28,16 @@ def get_filters():
             print("\nPlease check your input.")
             print("\nRestarting...")
     print(f"\nYou have chosen {city.title()} as your city.")
-    
+
 # Creating dictionary to store potential months plus a select 'all' option
-    SELECT_MONTH = {'january': 1, 'february': 2, 'march': 3,'april': 4, 'may': 5, 'june': 6, 'all' : 7}
+    SELECT_MONTH = {'january': 1, 'february': 2, 'march': 3, 'april': 4, 'may': 5, 'june': 6, 'all': 7}
     month = ''
     while month not in SELECT_MONTH.keys():
         print ("\n Enter a month, between January and June, that you would like to see:")
         print ("\nAccepted input:\nFull month name; not case sensitive")
         print("\n(You may also opt to view data for all months, please type 'all' or 'All' or 'ALL' for that.)")
         month = input().lower()
-           
+
     if month not in SELECT_MONTH.keys():
            print ("Invalid input. Try again in the correct format")
            print ("Restarting.....")
@@ -60,6 +60,8 @@ def get_filters():
     print('-'*40)
     return city, month, day
 def load_data(city, month, day):
+
+
     """
     Loads data for the specified city and filters by month and day if applicable.
     Args:
@@ -77,17 +79,17 @@ def load_data(city, month, day):
     df['day'] = df['Start Time'].dt.weekday_name
     # filter by month
     if month != 'all':
-        months = ['january','february','march','april','may','june'] 
+        months = ['january','february','march','april','may','june']
         month = months.index(month)+1
         df = df[df['day'] == day.title()]
-    
+
     return df
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
    #displays stats on the most frequent travel times
-    print ("Calculating The Most Frequent Travel Times") 
+    print ("Calculating The Most Frequent Travel Times")
     start_time = time.time()
     #Use mode to find the most popular month
     mode_month = df['month'].mode()[0]
@@ -106,18 +108,18 @@ def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
-    
+
     mode_start_station =df['Start Station'].mode()[0]
     print(f"The most common start station:{mode_start_station}")
-    
+
     mode_end_station = df['End Station'].mode()[0]
     print(f"The most common end station:{mode_end_station}")
     df['mode_route'] = df['Start Station']+ " " + df['End Station']
     print("The most common route is : {}".format(df['mode_route'].mode().values[0]))
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
     print('\nCalculating Trip Duration...\n')
@@ -126,7 +128,7 @@ def trip_duration_stats(df):
     sum_duration = df['Trip Duration'].sum()
     hour, minute = divmod(sum_duration,60)
     print(f"Total trip duration is {hour} hours and {minute} minutes")
-    #Uses mean to calculate average duration and format into minutes and hours 
+    #Uses mean to calculate average duration and format into minutes and hours
     mean_duration = round(df['Trip Duration'].mean())
     mins, sec = divmod(mean_duration,60)
     print(f"\nThe mean trip duration is {mins} minutes and {sec} seconds")
@@ -143,7 +145,7 @@ def user_stats(df):
     try:
         count_gender = df['Gender'].value_counts()
         print(f"\nThe types of users by gender are displayed below:\n\n{count_gender}")
-        
+
     except : print("There is no gender data to display")
     #Displays summary statistics of ages
     try:
@@ -151,14 +153,14 @@ def user_stats(df):
         maximum_by = int(df['Birth Year'].max())
         mode_by = int(df['Birth Year'].mode()[0])
         print (f"\nThe oldest birth year is :{minimum_by}\n\nThe youngest birth year is :{maximum_by}\n\nThe most frequently occuring age is : {mode_by}")
-    except: 
+    except:
         print("There are not birth year details in file")
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
 def display_raw_data(df):
     # displays raw data on user request
-    
+
     print(df.head())
     next = 0
     while True:
@@ -166,28 +168,30 @@ def display_raw_data(df):
         if view_raw_data.lower() != 'yes':
             return
         next = next + 5
-        print(df.iloc[next:next+5])         
-            
-              
+        print(df.iloc[next:next+5])
+
+
 def main():
     while True:
-        
+
         city, month, day = get_filters()
         df = load_data(city, month, day)
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        
+
         while True:
             view_raw_data = input('\nWould you like to view first five row of raw data? Enter yes or no.\n')
             if view_raw_data.lower() != 'yes':
                 break
             display_raw_data(df)
             break
-            
+
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
 if __name__ == "__main__":
-	main()
+
+
+  main()
