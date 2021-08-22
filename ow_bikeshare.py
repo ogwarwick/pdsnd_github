@@ -1,9 +1,9 @@
 import time
 import pandas as pd
 import numpy as np
-CITY_DATA = {'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv'}
+CITY_DATA = {'chicago': 'chicago.csv','new york city': 'new_york_city.csv', 'washington': 'washington.csv'}
+
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -13,7 +13,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-#Use of an empty city variable to store city choice from user
+# Use of an empty city variable to store city choice from user
 
     city = ''
     # while loop for correct user input gets otherwise repeat
@@ -33,15 +33,15 @@ def get_filters():
     SELECT_MONTH = {'january': 1, 'february': 2, 'march': 3, 'april': 4, 'may': 5, 'june': 6, 'all': 7}
     month = ''
     while month not in SELECT_MONTH.keys():
-        print ("\n Enter a month, between January and June, that you would like to see:")
-        print ("\nAccepted input:\nFull month name; not case sensitive")
+        print("\n Enter a month, between January and June, that you would like to see:")
+        print("\nAccepted input:\nFull month name; not case sensitive")
         print("\n(You may also opt to view data for all months, please type 'all' or 'All' or 'ALL' for that.)")
         month = input().lower()
 
     if month not in SELECT_MONTH.keys():
-           print ("Invalid input. Try again in the correct format")
-           print ("Restarting.....")
-           print (f"\nYou have selected {month.title()}.")
+           print("Invalid input. Try again in the correct format")
+           print("Restarting.....")
+           print(f"\nYou have selected {month.title()}.")
 #Creating list to store potential days plus a select 'all' option
     SELECT_DAY = ['all','monday','tuesday','wednesday','thursday','friday']
     day = ''
